@@ -1,10 +1,18 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
+  font-weight: normal; */
+
+  max-width: 940px;
+  min-width: 720px;
+  margin: 10px auto 10px auto;
+  padding: 20px;
+  border: 4px double #000;
+  /* background-color: #655454; */
+  text-align: center;
 }
 
 a,
@@ -28,7 +36,7 @@ a,
   }
 
   #app {
-    display: grid;
+    display: block;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }

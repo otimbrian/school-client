@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import userLogin from '@/service/user'
+import { userLogin } from '@/service/user'
 
 export default {
   data() {
@@ -38,18 +38,14 @@ export default {
 
         console.log(data)
         localStorage.setItem('token', data)
-        
       } catch (error) {
         if (error.response) {
-
           console.log(error.response.data)
           this.error = error.response.data.message
         } else if (error.request) {
-          
           console.log(error.request)
           this.error = 'Could not connect to the server.'
         } else {
-          
           console.log('Error', error.message)
           this.error = 'An unexpected error occurred.'
         }
@@ -107,6 +103,3 @@ export default {
   margin-top: 10px;
 }
 </style>
-
-<script></script>
-<style></style>

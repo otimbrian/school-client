@@ -59,7 +59,12 @@
 }
 
 body {
-  min-height: 100vh;
+
+  font-size: 76%;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.15em;
+  background-color: #655454;
+  /* min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
   transition:
@@ -78,7 +83,7 @@ body {
     'Fira Sans',
     'Droid Sans',
     'Helvetica Neue',
-    sans-serif;
+    /* sans-serif; */
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

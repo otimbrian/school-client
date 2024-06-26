@@ -4,39 +4,54 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  
   <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-
     <div class="wrapper">
-      <!-- <HelloWorld msg="You did it!" /> -->
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">Users</RouterLink>
+        <RouterLink to="/users">Users</RouterLink>
+        <RouterLink to="/students">Students</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/logout">Logout</RouterLink>
+        <RouterLink to="/me">About-Me</RouterLink>
       </nav>
-
     </div>
-
+    <hr />
   </header>
 
-  <RouterView />
-
+  <div class="app_injection">
+    <RouterView />
+  </div>
+  <div class="footer">
+    <p>
+      &copy; Copyright 2024 <br />
+      BRIAN OTIM<br />
+      Student Management
+    </p>
+  </div>
 </template>
 
 <style scoped>
 /* header {
   line-height: 1.5;
-  max-height: 30vh;
+  max-height: 100px;
 } */
 
 /* .logo {
   display: block;
   margin: 0 auto 2rem;
 } */
+.footer {
+  text-align: center;
+  width: 720px;
+  margin: 20px auto 20px auto;
+  font-weight: normal;
+  /* height: 16px; */
 
+  /* background-color: rgb(79, 99, 99); */
+}
+
+.app_injection {
+  padding-top: 40px;
+}
 nav {
   /* width: 100%; */
   font-size: 12px;
@@ -63,28 +78,27 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
-  /* header {
+/* @media (min-width: 1024px) { */
+/* header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   } */
 
-
-  /* header .wrapper {
+/* header .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
   } */
 
-  nav {
-    /* text-align: left;
+/* nav { */
+/* text-align: left;
     margin-left: -1rem; */
-    font-size: 1rem;
+/* font-size: 1rem;
     text-align: center;
 
     padding: 1rem 0;
     margin-top: 1rem;
-  }
-}
+  } */
+/* } */
 </style>

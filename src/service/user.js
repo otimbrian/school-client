@@ -1,11 +1,14 @@
 // const { default: axios } = require("axios")
 import axios from "axios"
+import { baseUrl } from "./local"
 
-const baseUrl = ''
+const baseUserUrl = 'user'
 
-const userLogin = async (userData) => {
-    const response = await axios.post(baseUrl, userData)
+export const userLogin = async (userData) => {
+    const response = await axios.post(`${baseUrl}/${baseUserUrl}`, userData)
     return response.data
 }
 
-export default userLogin
+// export default {
+//     userLogin
+// }
