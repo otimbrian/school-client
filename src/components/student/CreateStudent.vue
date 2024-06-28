@@ -17,7 +17,7 @@
         <input type="text" id="class" v-model="studentClass" size="30" maxlength="100" />
       </div>
       <div>
-        <label for="studentAge">Age:</label>
+        <label for="age">Age:</label>
         <input type="number" id="age" v-model="studentAge" size="30" maxlength="100" />
       </div>
       <!-- <br /> -->
@@ -34,26 +34,25 @@ export default {
     return {
       firstName: '',
       lastName: '',
-      age: '',
+      studentAge: '',
       studentClass: ''
     }
   },
 
   methods: {
-    async createOneStudent() {
+    createOneStudent: async () => {
       try {
         const studentData = {
           firstName: this.firstName,
           lastName: this.lastName,
-          age: this.age,
+          age: this.studentAge,
           studentClass: this.studentClass
         }
 
         console.log('Student Data ----->', studentData)
 
-        const response = createStudent(studentData)
+        const response = await createStudent(studentData)
         console.log(response)
-        
       } catch (error) {
         console.log(error)
       }
@@ -61,6 +60,7 @@ export default {
   }
 }
 </script>
+
 <style>
 form {
   display: grid;
