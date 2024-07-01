@@ -28,7 +28,7 @@ const router = createRouter({
       path: '/students',
       name: 'students',
 
-      component: () => import('../components/student/ViewStudents.vue')
+      component: () => import('../components/student/StudentList.vue')
     },
     {
       path: '/updateStudent',

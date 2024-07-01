@@ -1,5 +1,5 @@
 <template>
-  <div class="student_view">
+  <div v-for="student in getAllStudents" :key="student.firstName" class="student_view">
     <h1>View Students</h1>
     <hr />
     <br />
@@ -31,8 +31,12 @@
 
 <script>
 import router from '@/router'
+import { mapGetters } from 'vuex'
 
 export default {
+  computed: {
+    ...mapGetters['getAllStudents']
+  },
   methods: {
     editStudent: () => {
       router.push('/updateStudent')

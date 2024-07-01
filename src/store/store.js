@@ -1,11 +1,11 @@
 
 import { createStore } from "vuex"
+import students from "./module/students"
 
 
 const store = createStore({
-    state: {
-        user: null,
-        students: [],
+    modules: {
+        students
     }
 })
 

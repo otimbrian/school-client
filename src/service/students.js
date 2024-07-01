@@ -1,5 +1,6 @@
 import axios from "axios"
-const baseStudentUrl = 'student'
+import { baseUrl } from "./local"
+const baseStudentUrl = `${baseUrl}/students`
 
 export const createStudent = async (studentData) => {
     const response = await axios.post(baseStudentUrl, studentData)
@@ -8,9 +9,16 @@ export const createStudent = async (studentData) => {
 
 export const updateStudent = async (studentId, studentData) => {
     const response = await axios.put(baseStudentUrl, studentData)
-    return response
+    return response.data
 }
 
-// export default {
-//     createStudent, updateStudent
-// }
+const getAllStudents = async () => {
+    const response = await axios.get(baseStudentUrl)
+    return response.data
+}
+
+const studentService = {
+    createStudent, updateStudent, getAllStudents
+}
+
+export default studentService

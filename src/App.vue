@@ -1,6 +1,30 @@
 <script setup>
+// import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+// import studentsService from './service/students'
+// import store from './store/store'
+// import { useStore } from 'vuex'
+// // import HelloWorld from './components/HelloWorld.vue'
+// // Create reactive variables
+
+// const loading = ref(true)
+// const error = ref(null)
+// // const data = ref(null)
+
+// const fetchAllStudents = async () => {
+//   try {
+//     const students = await studentsService.getAllStudents()
+//     console.log(students)
+//     store.dispatch('initializeStudents', students)
+//   } catch (err) {
+//     // console.log('Error ------> ', err)
+//     error.value = 'Failed to load data: ' + err.message
+//   } finally {
+//     loading.value = false
+//   }
+// }
+
+// onMounted(fetchAllStudents)
 </script>
 
 <template>
@@ -18,9 +42,12 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <div class="app_injection">
+    <!-- <p v-if="loading">Loading...</p> -->
+    <!-- <p v-else-if="error">{{ error }}</p> -->
     <RouterView />
   </div>
   <div class="footer">
+    <hr />
     <p>
       &copy; Copyright 2024 <br />
       BRIAN OTIM<br />

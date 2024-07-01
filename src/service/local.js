@@ -1,5 +1,5 @@
 // Base url to the server.
-export const baseUrl = ''
+export const baseUrl = 'http://127.0.0.1:8000/api'
 
 // Setting the token.
 export let userToken = null
