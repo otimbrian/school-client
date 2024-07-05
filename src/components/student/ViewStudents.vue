@@ -8,6 +8,7 @@
         <td><strong>First Name:</strong></td>
         <td>First Name</td>
       </tr>
+
       <tr>
         <td><strong>Last Name:</strong></td>
         <td>Last Name</td>
@@ -17,6 +18,7 @@
         <td>Class:</td>
         <td>Class</td>
       </tr>
+
       <tr>
         <td>Age:</td>
         <td>Age</td>
@@ -26,6 +28,7 @@
 
   <div>
     <input @click="editStudent" type="button" value="Edit Student" />
+    <input @click="deleteStudent" type="button" value="Delete Student" />
   </div>
 </template>
 
@@ -39,7 +42,12 @@ export default {
   },
   methods: {
     editStudent: () => {
-      router.push('/updateStudent')
+      router.push('/edit_student')
+    },
+
+    deleteStudent: () => {
+      //Delete student function goes here.
+      console.log('....Deleting user ....')
     }
   }
 }

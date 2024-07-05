@@ -1,10 +1,15 @@
 <template>
   <div>
     <h2>All Students</h2>
-    <div v-for="student in students" :key="student.id">
-      <ul>
-        <li><StudentItem :re_student="student" /></li>
-      </ul>
+    <hr />
+    <div class=".list-student_upper">
+      <div v-for="student in students" :key="student.id" class="list_student">
+        <!-- <ul> -->
+        <!-- <li class="list_student"> -->
+        <StudentItem :re_student="student" />
+        <!-- </li> -->
+        <!-- </ul> -->
+      </div>
     </div>
   </div>
 </template>
@@ -29,4 +34,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.list_student_upper {
+  display: flex;
+  /* justify-content: flex-start; */
+}
+hr {
+  padding: auto;
+}
+</style>

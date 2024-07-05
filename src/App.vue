@@ -1,6 +1,8 @@
 <script setup>
 // import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+
+window.csrf_token = '{{ csrf_token() }}'
 // import studentsService from './service/students'
 // import store from './store/store'
 // import { useStore } from 'vuex'

@@ -1,17 +1,56 @@
 <template>
-  <div>
-    <h2>View User</h2>
-  </div>
-  <hr />
-  <br />
-  <div>
-    <article><strong> User Name </strong> User Name</article>
-    <article><strong> Email </strong> Email</article>
-  </div>
-  <div>
-    <button @click="logOut" type="submit">Logout</button>
+  <div class="box">
+    <div>
+      <h2>View User</h2>
+    </div>
+    <br />
+    <div class="personal">
+      <article><strong> User Name </strong> User Name</article>
+      <article><strong> Email </strong> Email</article>
+    </div>
+    <div>
+      <button @click="logOut" type="submit">Logout</button>
+    </div>
   </div>
 </template>
+
+<style>
+.box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.personal {
+  display: flex;
+  /* background-color: #007bff; */
+  /* align-items: center; */
+  margin: 10 auto;
+}
+
+article {
+  padding: 10px;
+  width: 290px;
+  margin: 10 auto;
+}
+
+article strong {
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+</style>
 
 <script>
 export default {

@@ -14,10 +14,18 @@
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
+  <div class="problems">
+    <a @click="changePassword">Forgot your password?</a><br />
+    <a @click="goToRegister">Don't have an account? SignUp.</a>
+  </div>
 </template>
 
 <script>
-import { userLogin } from '@/service/user'
+// import { userLogin } from '@/service/user'
+import router from '@/router'
+import axios from 'axios'
+axios.defaults.withCredentials = true
+axios.defaults.withXSRFToken = true
 
 export default {
   data() {
@@ -29,18 +37,35 @@ export default {
   },
   methods: {
     async login() {
+      // function getCookie(name) {
+      //   const value = document.cookie
+      //   const parts = value.split(name)
+      //   if (parts.length === 2) {
+      //     return parts.pop().split(';').shift()
+      //   }
+      // }
       try {
+        const payload = {
+          email: this.username,
+          password: this.password
+        }
+
+        console.log('Data Being sent ---->', payload)
+        await axios.get(`http://localhost:8000/sanctum/csrf-cookie`)
+        const response = await axios.post('http://localhost:8000/login', payload)
         // const response = await axios.post('https://your-api-endpoint.com/login', {
         //   username: this.username,
         //   password: this.password
         // })
-        const data = userLogin({ username: this.username, password: this.password })
+        // const data = await userLogin({ username: this.username, password: this.password })
 
-        console.log(data)
-        localStorage.setItem('token', data)
+        console.log('Loging token ----->', response.data)
+        localStorage.setItem('token', response.data)
+
+        // const loggedUser =
       } catch (error) {
         if (error.response) {
-          console.log(error.response.data)
+          console.log('Error in logging in ----->', error.response.data)
           this.error = error.response.data.message
         } else if (error.request) {
           console.log(error.request)
@@ -50,6 +75,14 @@ export default {
           this.error = 'An unexpected error occurred.'
         }
       }
+    },
+
+    goToRegister() {
+      router.push('/register')
+    },
+
+    changePassword() {
+      router.push('/recover_password')
     }
   }
 }
@@ -101,5 +134,13 @@ export default {
 .error {
   color: red;
   margin-top: 10px;
+}
+
+.problems {
+  justify-content: center;
+}
+
+.problems:hover {
+  color: aqua;
 }
 </style>

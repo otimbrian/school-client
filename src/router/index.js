@@ -31,8 +31,8 @@ const router = createRouter({
       component: () => import('../components/student/StudentList.vue')
     },
     {
-      path: '/updateStudent',
-      name: 'updateStudent',
+      path: '/edit_student',
+      name: 'edit_student',
 
       component: () => import('../components/student/UpdateStudent.vue')
     },
@@ -41,6 +41,25 @@ const router = createRouter({
       name: 'me',
 
       component: () => import('../components/user/ViewUser.vue')
+    },
+    {
+      path: '/view_student',
+      name: 'view_student',
+
+      component: () => import('@/components/student/ViewStudents.vue')
+    },
+    {
+      path: '/recover_password',
+      name: 'recover_password',
+
+      component: () => import('@/components/user/EmailToRecoverPassword.vue')
+    },
+
+    {
+      path: '/register',
+      name: 'register_user',
+
+      component: () => import ('@/components/user/RegisterUser.vue')
     }
   ]
 })
