@@ -31,7 +31,7 @@ export default {
   width: 250px;
 }
 
-.single_student {
-  /* background-color: green; */
-}
+/* .single_student { */
+/* background-color: green; */
+/* } */
 </style>
