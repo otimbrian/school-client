@@ -1,24 +1,7 @@
-// Base url to the server.
-export const baseUrl = 'http://127.0.0.1:8000/api'
-
 // Setting the token.
 export let userToken = null
 
-const setUserTokenString = newUserToken => {
-    userToken = `Bearer ${newUserToken}`
-}
-
-// Sets the tokeb in the header and returns it as
-// a header object.
-export const getHeader = token => {
-    const data = {
-        headers: { Authorization: token }
-    }
-
-    return data
-}
-
-export const LocalStorage = {
+const LocalStorage = {
     name: 'User_Token',
 
     addToLocalStorage: (name, value) => {
@@ -35,4 +18,4 @@ export const LocalStorage = {
 
 }
 
-export default setUserTokenString
+export default LocalStorage

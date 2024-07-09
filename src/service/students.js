@@ -1,6 +1,6 @@
 import axios from "axios"
-import { baseUrl } from "./local"
-const baseStudentUrl = `${baseUrl}/students`
+// import { baseUrl } from "./local"
+const baseStudentUrl = `/students`
 
 export const createStudent = async (studentData) => {
     const response = await axios.post(baseStudentUrl, studentData)

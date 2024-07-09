@@ -1,33 +1,33 @@
-// const { default: axios } = require("axios")
-import { baseUrl } from "./local"
-import axios from "axios"
-const baseAuthUrl = 'http://127.0.0.1:8000'
+import axiosInstance from "./axios"
+export const baseAuthUrl = 'http://localhost:8000'
 
 
+const getCSRFToken = async () => {
+    await axiosInstance.get(`/sanctum/csrf-cookie`)
+}
 export const userLogin = async (userData) => {
 
-    await axios.get(`http://localhost:8000/sanctum/csrf-cookie`, {
-        withCredentials: true,
-        withXSRFToken: true
-    })
-    const response = await axios.post(`${baseAuthUrl}/login`, userData, {
-        withCredentials: true,
-        withXSRFToken: true
-    })
+    await getCSRFToken();
+    const response = await axiosInstance.post('/login', userData)
+    return response
 
-    return response.data
 }
 
 // Get the user
 export const getUser = async () => {
-    const response = await axios.get(`${baseUrl}/user`)
+    const response = await axiosInstance.get('/api/user')
     return response.data
 }
 
 
 // Register new user
 export const resgisterNewUser = async (userParams) => {
-    const response = await axios.post(`${baseAuthUrl}/register`, userParams)
-
-    return response.data
+    await getCSRFToken()
+    const response = await axiosInstance.post('/register', userParams)
+    return response
 }
+
+const userService = {
+    userLogin, getUser, resgisterNewUser
+}
+export default userService
