@@ -1,8 +1,12 @@
 <script setup>
 // import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+// import axios from 'axios'
 
-window.csrf_token = '{{ csrf_token() }}'
+// // window.csrf_token = '{{ csrf_token() }}'
+// axios.defaults.withCredentials = true
+// axios.defaults.withXSRFToken = true
+
 // import studentsService from './service/students'
 // import store from './store/store'
 // import { useStore } from 'vuex'
@@ -33,7 +37,7 @@ window.csrf_token = '{{ csrf_token() }}'
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">Amamun Cavine</RouterLink>
         <RouterLink to="/users">Users</RouterLink>
         <RouterLink to="/students">Students</RouterLink>
         <RouterLink to="/login">Login</RouterLink>

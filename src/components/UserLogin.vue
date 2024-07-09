@@ -4,11 +4,25 @@
     <form @submit.prevent="login">
       <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" size="30" maxlength="100" />
+        <input
+          type="text"
+          id="username"
+          v-model="username"
+          autocomplete="on"
+          size="30"
+          maxlength="100"
+        />
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" size="30" maxlength="100" />
+        <input
+          type="password"
+          id="password"
+          v-model="password"
+          size="30"
+          maxlength="100"
+          autocomplete="on"
+        />
       </div>
       <button type="submit">Login</button>
     </form>
@@ -19,11 +33,65 @@
     <a @click="goToRegister">Don't have an account? SignUp.</a>
   </div>
 </template>
+<script>
+import router from '@/router'
+import userService from '@/service/user'
 
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      error: ''
+    }
+  },
+  methods: {
+    async login() {
+      try {
+        const payload = {
+          email: this.username,
+          password: this.password
+        }
+
+        console.log('Data Being sent ---->', payload)
+        await userService.userLogin(payload)
+
+        // console.log('Login response ----->', response)
+        // console.log('Loging token ----->', response.data)
+
+        this.$router.push('/')
+      } catch (error) {
+        if (error.response) {
+          // console.log('Error in logging in ----->', error.response.data)
+          this.error = error.response.data.message
+        } else if (error.request) {
+          // If there's no connection to the server
+          console.log(error.request)
+          this.error = 'Could not connect to the server.'
+        } else {
+          console.log('Error', error.message)
+          this.error = 'An unexpected error occurred.'
+        }
+      }
+    },
+
+    goToRegister() {
+      router.push('/register')
+    },
+
+    changePassword() {
+      router.push('/recover_password')
+    }
+  }
+}
+</script>
+<!-- 
 <script>
 // import { userLogin } from '@/service/user'
-import router from '@/router'
+import { LocalStorage } from '@/service/local'
+import { baseAuthUrl } from '@/service/user'
 import axios from 'axios'
+
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
 
@@ -44,49 +112,50 @@ export default {
       //     return parts.pop().split(';').shift()
       //   }
       // }
-      try {
-        const payload = {
-          email: this.username,
-          password: this.password
-        }
-
-        console.log('Data Being sent ---->', payload)
-        await axios.get(`http://localhost:8000/sanctum/csrf-cookie`)
-        const response = await axios.post('http://localhost:8000/login', payload)
-        // const response = await axios.post('https://your-api-endpoint.com/login', {
-        //   username: this.username,
-        //   password: this.password
-        // })
-        // const data = await userLogin({ username: this.username, password: this.password })
-
-        console.log('Loging token ----->', response.data)
-        localStorage.setItem('token', response.data)
-
-        // const loggedUser =
-      } catch (error) {
-        if (error.response) {
-          console.log('Error in logging in ----->', error.response.data)
-          this.error = error.response.data.message
-        } else if (error.request) {
-          console.log(error.request)
-          this.error = 'Could not connect to the server.'
-        } else {
-          console.log('Error', error.message)
-          this.error = 'An unexpected error occurred.'
-        }
+      const payload = {
+        email: this.username,
+        password: this.password
       }
-    },
 
-    goToRegister() {
-      router.push('/register')
-    },
+      try {
+        console.log('Data Being sent ', payload) -->
+<!-- await axios.get(`${baseAuthUrl}/sanctum/csrf-cookie`) -->
+<!-- await axios.post(`${baseAuthUrl}/login`, payload) -->
 
-    changePassword() {
-      router.push('/recover_password')
-    }
-  }
-}
-</script>
+<!-- const response = await axios.get(`${baseAuthUrl}/api/user`) -->
+
+<!-- console.log('Loging token -----', response.data)
+        // localStorage.setItem('token', response.data) -->
+<!-- LocalStorage.addToLocalStorage('user', response.data) -->
+<!-- // if (response.data) { -->
+<!-- this.$router.push('/') -->
+<!-- // } -->
+
+<!-- // const loggedUser -->
+<!-- } catch (error) { -->
+<!-- if (error.response) { -->
+<!-- console.log('Error in logging in', error.response.data)
+          this.error = error.response.data.message -->
+<!-- } else if (error.request) { -->
+<!-- console.log(error.request) -->
+<!-- this.error = 'Could not connect to the server.' -->
+<!-- } else { -->
+<!-- console.log('Error', error.message) -->
+<!-- this.error = 'An unexpected error occurred.' -->
+<!-- } -->
+<!-- } -->
+<!-- }, -->
+
+<!-- goToRegister() { -->
+<!-- this.$router.push('/register') -->
+<!-- }, -->
+
+<!-- changePassword() { -->
+<!-- this.$router.push('/recover_password') -->
+<!-- } -->
+<!-- } -->
+<!-- } -->
+<!-- </script> -->
 
 <style scoped>
 .login {
