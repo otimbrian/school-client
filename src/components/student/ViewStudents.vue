@@ -1,27 +1,29 @@
 <template>
-  <div v-for="student in getAllStudents" :key="student.firstName" class="student_view">
+  <div class="student_view">
     <h1>View Students</h1>
     <hr />
     <br />
+    <!-- <p>{{ student }}</p> -->
+    <!-- <p>{{ $route.params }}</p> -->
     <table>
       <tr>
         <td><strong>First Name:</strong></td>
-        <td>First Name</td>
+        <td>{{ student.first_name }}</td>
       </tr>
 
       <tr>
         <td><strong>Last Name:</strong></td>
-        <td>Last Name</td>
+        <td>{{ student.last_name }}</td>
       </tr>
 
       <tr>
         <td>Class:</td>
-        <td>Class</td>
+        <td>{{ student.class }}</td>
       </tr>
 
       <tr>
         <td>Age:</td>
-        <td>Age</td>
+        <td>{{ student.age }}</td>
       </tr>
     </table>
   </div>
@@ -34,11 +36,19 @@
 
 <script>
 import router from '@/router'
-import { mapGetters } from 'vuex'
+import store from '@/store/store'
+import { mapState } from 'vuex'
+
+// const myStore = useStore()
 
 export default {
-  computed: {
-    ...mapGetters['getAllStudents']
+  computed: mapState({
+    student(state) {
+      return state.students.student
+    }
+  }),
+  async created() {
+    await store.dispatch('setStudent', this.$route.params.id)
   },
   methods: {
     editStudent: () => {
@@ -59,7 +69,7 @@ export default {
 }
 
 .student_view table {
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
 }
 .item {

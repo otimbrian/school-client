@@ -35,6 +35,7 @@ const router = createRouter({
     },
     {
       path: '/students/:id',
+      name: 'student',
       component: () => import('@/components/student/ViewStudents.vue')
     },
     {
@@ -48,12 +49,6 @@ const router = createRouter({
       name: 'me',
 
       component: () => import('../components/user/ViewUser.vue')
-    },
-    {
-      path: '/view_student',
-      name: 'view_student',
-
-      component: () => import('@/components/student/ViewStudents.vue')
     },
     {
       path: '/recover_password',
@@ -79,7 +74,7 @@ const router = createRouter({
 
 router.beforeEach(
   async (to) => {
-    const publicPage = ['/login']
+    const publicPage = ['/login', '/register', '/recover_password']
     const authRequired = !publicPage.includes(to.path)
 
     const user = LocalStorage.getFromLocalStorage(LocalStorage.name)

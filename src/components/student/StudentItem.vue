@@ -1,13 +1,10 @@
 <template>
-  <!-- <div > -->
   <div class="single_student">
-    <!-- <h4>students</h4> -->
     {{ re_student.first_name }}
   </div>
   <div>
-    <input @click="viewStudent" type="button" value="View Student" />
+    <input @click="viewStudent(re_student.id)" type="button" value="View Student" />
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -19,8 +16,8 @@ export default {
   },
 
   methods: {
-    viewStudent: () => {
-      router.push('/view_student')
+    viewStudent: (id) => {
+      router.push(`/students/${id}`)
     }
   }
 }
@@ -29,6 +26,9 @@ export default {
 <style>
 .list_student {
   width: 250px;
+}
+.sigle_student {
+  align-items: center;
 }
 
 /* .single_student { */

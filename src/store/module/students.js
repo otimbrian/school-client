@@ -2,10 +2,12 @@ import studentsService from "@/service/students"
 
 const state = () => ({
     all: [],
-
+    student: {}
 })
 
-const getters = {}
+const getters = {
+    getStudent: (state) => state.student
+}
 
 const actions = {
     async getAllStudents({ commit }) {
@@ -14,12 +16,22 @@ const actions = {
         commit('initializeStudents', students)
 
         console.log('....Done.....')
+    },
+
+    setStudent({ commit }, id) {
+        console.log('setting id ----->', id)
+        commit('set_student', id)
     }
 }
 
 const mutations = {
     initializeStudents: (state, students) => {
         state.all = students
+    },
+
+    set_student(state, id) {
+        state.student = state.all.find(stu => Number(stu.id) === Number(id))
+        console.log("Dones setting --->");
     }
 }
 
