@@ -57,12 +57,12 @@ export default {
 
         console.log('Data Being sent ---->', payload)
         await userService.userLogin(payload)
-        this.$store.dispatch('setAuthenticatedUser')
+        await this.$store.dispatch('setAuthenticatedUser')
 
         // console.log('Login response ----->', response)
         // console.log('Loging token ----->', response.data)
-
         this.$router.push('/')
+        
       } catch (error) {
         if (error.response) {
           // console.log('Error in logging in ----->', error.response.data)

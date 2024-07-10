@@ -14,6 +14,31 @@
   </div>
 </template>
 
+<script>
+import router from '@/router'
+import store from '@/store/store'
+import { mapActions, mapGetters, mapState } from 'vuex'
+
+export default {
+  methods: {
+    ...mapGetters('users', ['getAuthenticatedUser']),
+    ...mapActions('user', ['removeAuthenticatedUser']),
+    logOut: async () => {
+      //Todo .......All the logout details.
+      await store.dispatch('removeAuthenticatedUser')
+      router.push('/login')
+    }
+  },
+  computed: {
+    ...mapState({
+      user(state) {
+        return state.user.authUser
+      }
+    })
+  }
+}
+</script>
+
 <style>
 .box {
   max-width: 600px;
@@ -51,25 +76,3 @@ article strong {
   font-size: 16px;
 }
 </style>
-
-<script>
-import { mapGetters, mapState } from 'vuex'
-
-export default {
-  methods: {
-    ...mapGetters('users', ['getAuthenticatedUser']),
-
-    logOut: () => {
-      //Todo .......All the logout details.
-      console.log('Loggged out')
-    }
-  },
-  computed: {
-    ...mapState({
-      user(state) {
-        return state.user.authUser
-      }
-    })
-  }
-}
-</script>

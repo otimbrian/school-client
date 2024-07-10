@@ -27,7 +27,11 @@ export const resgisterNewUser = async (userParams) => {
     return response
 }
 
+export const logoutRegisteredUser = async () => {
+    await axiosInstance.post('/logout')
+}
+
 const userService = {
-    userLogin, getUser, resgisterNewUser
+    userLogin, getUser, resgisterNewUser, logoutRegisteredUser
 }
 export default userService
