@@ -4,9 +4,9 @@
       <h2>View User</h2>
     </div>
     <br />
-    <div class="personal">
-      <article><strong> User Name </strong> User Name</article>
-      <article><strong> Email </strong> Email</article>
+    <div v-if="user !== null" class="personal">
+      <article><strong> User Name </strong>{{ user.name }}</article>
+      <article><strong> Email </strong>{{ user.email }}</article>
     </div>
     <div>
       <button @click="logOut" type="submit">Logout</button>
@@ -53,12 +53,23 @@ article strong {
 </style>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
+
 export default {
   methods: {
+    ...mapGetters('users', ['getAuthenticatedUser']),
+
     logOut: () => {
       //Todo .......All the logout details.
       console.log('Loggged out')
     }
+  },
+  computed: {
+    ...mapState({
+      user(state) {
+        return state.user.authUser
+      }
+    })
   }
 }
 </script>

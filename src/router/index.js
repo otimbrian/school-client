@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+// import store from '@/store/store'
+import LocalStorage from '@/service/local'
+// import { useStore } from 'vuex'
 // import UserLogin from '@/components/UserLogin.vue'
 
 const router = createRouter({
@@ -70,4 +73,17 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach(
+  async (to) => {
+    const publicPage = ['/login']
+    const authRequired = !publicPage.includes(to.path)
+
+    const user = LocalStorage.getFromLocalStorage(LocalStorage.name)
+
+    if (authRequired && !user) {
+      // auth.returnUrl = to.fullPath
+      return '/login'
+    }
+  }
+)
 export default router

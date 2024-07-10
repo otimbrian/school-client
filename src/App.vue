@@ -1,8 +1,28 @@
-<script setup>
+<script>
 // import { onMounted, ref } from 'vue'
+// import { onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+// import router from './router'
+// import user from './store/module/user';
+// import user from './store/module/user';
 // import axios from 'axios'
 
+// onMounted(() => {})
+
+export default {
+  setup() {
+    const myStore = useStore()
+
+    return {
+      user: computed(() => {
+        return myStore.state.user.authUser
+      })
+    }
+  },
+  components: [RouterLink, RouterView]
+}
 // // window.csrf_token = '{{ csrf_token() }}'
 // axios.defaults.withCredentials = true
 // axios.defaults.withXSRFToken = true
@@ -35,13 +55,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
+    <div class="wrapper" v-if="user">
       <nav>
-        <RouterLink to="/">Amamun Cavine</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/users">Users</RouterLink>
         <RouterLink to="/students">Students</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/me">About-Me</RouterLink>
+        <RouterLink to="/login" v-if="!user">Login</RouterLink>
+        <RouterLink to="/me" v-if="user">{{ user.name }}</RouterLink>
       </nav>
     </div>
     <hr />

@@ -36,6 +36,7 @@
 <script>
 import router from '@/router'
 import userService from '@/service/user'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -46,6 +47,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setAuthenticatedUser']),
     async login() {
       try {
         const payload = {
@@ -55,6 +57,7 @@ export default {
 
         console.log('Data Being sent ---->', payload)
         await userService.userLogin(payload)
+        this.$store.dispatch('setAuthenticatedUser')
 
         // console.log('Login response ----->', response)
         // console.log('Loging token ----->', response.data)
