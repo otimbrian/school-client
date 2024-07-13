@@ -5,20 +5,24 @@
     <form @submit.prevent="updateOneStudent">
       <div class="box-2">
         <div class="box-3">
+          <h3><strong>First Name:</strong></h3>
           <label for="username">First Name:</label><br />
           <input type="text" id="username" v-model="firstName" size="30" maxlength="100" />
         </div>
         <div class="box-3">
+          <h3><strong>First Name:</strong></h3>
           <label for="lastName">Last Name:</label><br />
           <input type="text" id="lastName" v-model="lastName" size="30" maxlength="100" />
         </div>
       </div>
       <div class="box-2">
         <div class="box-3">
+          <h3><strong>First Name:</strong></h3>
           <label for="class">Class:</label><br />
           <input type="text" id="class" v-model="studentClass" size="30" maxlength="100" />
         </div>
         <div class="box-3">
+          <h3><strong>First Name:</strong></h3>
           <label for="studentAge">Age:</label><br />
           <input type="number" id="age" v-model="studentAge" size="30" maxlength="100" />
         </div>
@@ -38,7 +42,7 @@
   </div>
 </template>
 <script>
-import { updateStudent } from '../../service/students'
+import studentService from '../../service/students'
 
 export default {
   data() {
@@ -59,7 +63,7 @@ export default {
         class: this.studentClass
       }
 
-      const response = await updateStudent(studentData)
+      const response = await studentService.updateStudent(studentData)
       console.log(response)
     }
   }
