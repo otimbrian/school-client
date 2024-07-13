@@ -29,10 +29,19 @@ const actions = {
         commit('update_student', student)
     },
 
+    // Delte a student.
     async deleteStudent({ commit }, student) {
         const data = await studentsService.deleteStudent(student.id)
         console.log("Student Deleted --->", data);
         commit('delete_student', student)
+    },
+
+    // Create action to create a student.
+    async createStudent({ commit }, student) {
+        const data = await studentsService.createStudent(student)
+        console.log('Deleted successfully', data);
+        commit('create_new_student', student)
+
     }
 }
 
@@ -55,6 +64,10 @@ const mutations = {
         state.all = state.all.filter(
             stud => stud.id !== student.id
         )
+    },
+
+    create_new_student(state, student) {
+        state.all.push(student)
     }
 }
 
