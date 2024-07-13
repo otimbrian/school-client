@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="navigateToCreate">Create Student</button>
     <h2>All Students</h2>
     <hr />
     <div class=".list-student_upper">
@@ -19,10 +20,17 @@ import store from '@/store/store'
 import StudentItem from './StudentItem.vue'
 // import StudentItem from './StudentItem.vue'
 import { mapState } from 'vuex'
+import router from '@/router'
 
 export default {
   components: {
     StudentItem
+  },
+
+  methods: {
+    navigateToCreate() {
+      router.push('/create-student')
+    }
   },
 
   computed: mapState({

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { createStudent } from '../../service/students'
+// import { createStudent } from '../../service/students'
 
 export default {
   data() {
@@ -40,26 +40,6 @@ export default {
       lastName: '',
       studentAge: '',
       studentClass: ''
-    }
-  },
-
-  methods: {
-    createOneStudent: async () => {
-      try {
-        const studentData = {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          age: this.studentAge,
-          studentClass: this.studentClass
-        }
-
-        console.log('Student Data ----->', studentData)
-
-        const response = await createStudent(studentData)
-        console.log(response)
-      } catch (error) {
-        console.log(error)
-      }
     }
   }
 }

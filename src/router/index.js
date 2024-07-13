@@ -64,7 +64,7 @@ const router = createRouter({
       component: () => import('@/components/user/RegisterUser.vue')
     },
     {
-      path: '/create_student',
+      path: '/create-student',
       name: 'create_student',
 
       component: () => import('@/components/student/CreateStudent.vue')
