@@ -9,9 +9,10 @@
           <label for="username">First Name:</label><br />
           <input
             v-if="editingStudent"
+            v-bind:value="firstName"
+            @change="handleFirstNameChange"
             type="text"
             id="username"
-            v-model="firstName"
             size="30"
             maxlength="100"
           />
@@ -23,9 +24,10 @@
           <label for="lastName">Last Name:</label><br />
           <input
             v-if="editingStudent"
+            v-bind:value="lastName"
+            @change="handleLastNameChange"
             type="text"
             id="lastName"
-            v-model="lastName"
             size="30"
             maxlength="100"
           />
@@ -39,9 +41,10 @@
           <label for="class">Class:</label><br />
           <input
             v-if="editingStudent"
+            v-bind:value="studentClass"
+            @change="handleClassChange"
             type="text"
             id="class"
-            v-model="studentClass"
             size="30"
             maxlength="100"
           />
@@ -53,9 +56,10 @@
           <label for="studentAge">Age:</label><br />
           <input
             v-if="editingStudent"
+            v-bind:value="studentAge"
+            @change="handleAgeChange"
             type="number"
             id="age"
-            v-model="studentAge"
             size="30"
             maxlength="100"
           />
@@ -68,8 +72,9 @@
         <p>
           <label for="status">Active Students:</label>
           <br />
-          <input type="radio" name="status" value="active" checked="checked" /> Active
-          <input type="radio" name="status" value="inactive" />Inactive
+          <input type="radio" name="status" :value="true" v-model="active" checked="checked" />
+          Active
+          <input type="radio" name="status" :value="false" v-model="active" />Inactive
         </p>
       </div>
 
@@ -115,13 +120,18 @@
 <script>
 import router from '@/router'
 import store from '@/store/store'
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 // const myStore = useStore()
 
 export default {
   data() {
     return {
+      firstName: '',
+      lastName: '',
+      studentAge: '',
+      studentClass: '',
+      active: false,
       editingStudent: false,
       error: ''
     }
@@ -135,6 +145,7 @@ export default {
     await store.dispatch('setStudent', this.$route.params.id)
   },
   methods: {
+    ...mapActions(['updateStudent']),
     editStudent: () => {
       console.log('changing to editing')
       router.push('/edit_student')
@@ -148,6 +159,38 @@ export default {
     updatingStudentEditing() {
       console.log('Value of editing --->', this.editingStudent)
       this.editingStudent = this.editingStudent ? false : true
+      console.log('Value of editing --->', this.editingStudent)
+
+      if (this.editingStudent) {
+        this.firstName = this.student.first_name
+        this.lastName = this.student.last_name
+        this.studentAge = this.student.age
+        this.studentClass = this.student.class
+        this.active = this.student.active
+
+        console.log('New Student ---->', this.student)
+      } else {
+        console.log(('Current student ---> ', this.student))
+        console.log('Value of editing --->', this.editingStudent)
+        this.student.first_name = this.firstName
+        this.student.last_name = this.lastName
+        this.student.age = this.studentAge
+        this.student.class = this.studentClass
+        this.student.active = this.active
+        this.updateStudent(this.student)
+      }
+    },
+    handleFirstNameChange(e) {
+      this.firstName = e.target.value
+    },
+    handleLastNameChange(e) {
+      this.lastName = e.target.value
+    },
+    handleClassChange(e) {
+      this.studentClass = e.target.value
+    },
+    handleAgeChange(e) {
+      this.studentAge = e.target.value
     }
   }
 }
