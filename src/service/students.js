@@ -7,8 +7,8 @@ const createStudent = async (studentData) => {
     return response.data
 }
 
-const updateStudent = async (studentId, studentData) => {
-    const response = await axiosInstance.put(baseStudentUrl, studentData)
+const updateStudent = async (studentData) => {
+    const response = await axiosInstance.put(`${baseStudentUrl}/${studentData.id}`, studentData)
     return response.data
 }
 
