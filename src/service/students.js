@@ -17,8 +17,13 @@ const getAllStudents = async () => {
     return response.data
 }
 
+const deleteStudent = async (studentId) => {
+    const response = await axiosInstance.delete(`${baseStudentUrl}/${studentId}`)
+    return response
+}
+
 const studentService = {
-    createStudent, updateStudent, getAllStudents
+    createStudent, updateStudent, getAllStudents, deleteStudent
 }
 
 export default studentService

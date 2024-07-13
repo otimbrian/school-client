@@ -10,6 +10,8 @@ const getters = {
 }
 
 const actions = {
+    // Get all students from the database.
+    // Commit all  of then into the store.
     async getAllStudents({ commit }) {
         const students = await studentsService.getAllStudents()
         console.log(students)
@@ -20,11 +22,10 @@ const actions = {
         commit('set_student', id)
     },
 
+    // Update student in the database.
+    // Send an action to update the store.
     async updateStudent({ commit }, student) {
-        console.log('Updating to this ---->', student);
-        const data = await studentsService.updateStudent(student)
-        console.log('Response after update ---->', data)
-
+        await studentsService.updateStudent(student)
         commit('update_student', student)
     }
 }
