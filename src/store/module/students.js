@@ -27,6 +27,12 @@ const actions = {
     async updateStudent({ commit }, student) {
         await studentsService.updateStudent(student)
         commit('update_student', student)
+    },
+
+    async deletStudent({ commit }, student) {
+        const data = await studentsService.deleteStudent(student.id)
+        console.log("Student Deleted --->", data);
+        commit('delete_student', student)
     }
 }
 
@@ -42,6 +48,12 @@ const mutations = {
     update_student(state, student) {
         state.all = state.all.map(
             stud => stud.id !== student.id ? stud : student
+        )
+    },
+
+    delete_student(state, student) {
+        state.all = state.all.filter(
+            stud => stud.id !== student.id
         )
     }
 }
