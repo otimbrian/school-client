@@ -113,7 +113,7 @@
     <button @click="updatingStudentEditing" id="edit">
       {{ editingStudent ? 'Update Student' : 'Edit' }}
     </button>
-    <button @click="deleteStudent" id="delete" type="button">Delete Student</button>
+    <button @click="deleteThisStudent(student)" id="delete" type="button">Delete Student</button>
   </div>
 </template>
 
@@ -145,15 +145,13 @@ export default {
     await store.dispatch('setStudent', this.$route.params.id)
   },
   methods: {
-    ...mapActions(['updateStudent']),
-    editStudent: () => {
-      console.log('changing to editing')
-      router.push('/edit_student')
-    },
+    ...mapActions(['updateStudent', 'deleteStudent']),
 
-    deleteStudent: () => {
+    async deleteThisStudent(student) {
       //Delete student function goes here.
       console.log('....Deleting user ....')
+      await this.deleteStudent(student)
+      router.push('/students')
     },
 
     updatingStudentEditing() {

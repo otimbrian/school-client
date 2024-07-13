@@ -29,7 +29,7 @@ const actions = {
         commit('update_student', student)
     },
 
-    async deletStudent({ commit }, student) {
+    async deleteStudent({ commit }, student) {
         const data = await studentsService.deleteStudent(student.id)
         console.log("Student Deleted --->", data);
         commit('delete_student', student)
