@@ -2,7 +2,7 @@
   <div class="box">
     <h2>Create Student</h2>
 
-    <form @submit.prevent="updateOneStudent">
+    <form @submit.prevent="createNewStudent">
       <div class="box-2">
         <div class="box-3">
           <label for="username">First Name:</label><br />
@@ -31,6 +31,10 @@
 </template>
 
 <script>
+import router from '@/router'
+import store from '@/store/store'
+import { mapActions } from 'vuex'
+
 // import { createStudent } from '../../service/students'
 
 export default {
@@ -39,7 +43,28 @@ export default {
       firstName: '',
       lastName: '',
       studentAge: '',
-      studentClass: ''
+      studentClass: '',
+      active: true,
+      error: ''
+    }
+  },
+
+  methods: {
+    ...mapActions(['createStudent']),
+    createNewStudent() {
+      const studentPayload = {
+        first_name: this.firstName,
+        last_name: this.lastName,
+        age: this.studentAge,
+        class: this.studentClass,
+        active: this.active
+      }
+
+      // Call the action to create Student.
+      // this.createStudent(studentPayload)
+      store.dispatch('createStudent', studentPayload)
+
+      router.push('/students')
     }
   }
 }
