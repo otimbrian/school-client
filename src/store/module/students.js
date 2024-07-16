@@ -38,8 +38,9 @@ const actions = {
 
     // Create action to create a student.
     async createStudent({ commit }, student) {
+        console.log("Creating student ----->", student);
         const data = await studentsService.createStudent(student)
-        console.log('Deleted successfully', data);
+        console.log('Created successfully', data);
         commit('create_new_student', student)
 
     }
