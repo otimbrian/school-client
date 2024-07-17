@@ -55,10 +55,10 @@ export default {
 
 <template>
   <header>
-    <div class="wrapper" v-if="user">
+    <div class="nav justify-content-center" v-if="user">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/users">Users</RouterLink>
+        <RouterLink class="nav-item" aria-current-value="/home" to="/">Home</RouterLink>
+        <RouterLink to="/users" aria-current="/users">Users</RouterLink>
         <RouterLink to="/students">Students</RouterLink>
         <RouterLink to="/login" v-if="!user">Login</RouterLink>
         <RouterLink to="/me" v-if="user">{{ user.name }}</RouterLink>

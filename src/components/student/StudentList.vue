@@ -1,10 +1,9 @@
 <template>
   <div>
-    <button @click="navigateToCreate">Create Student</button>
-    <h2>All Students</h2>
-    <hr />
+    <div><button @click="navigateToCreate">Create New Student</button></div>
+    <div><h2>All Students</h2></div>
     <div class=".list-student_upper">
-      <div v-for="student in students" :key="student.id" class="list_student">
+      <div v-for="student in students" :key="student.id">
         <!-- <ul> -->
         <!-- <li class="list_student"> -->
         <StudentItem :re_student="student" />
@@ -42,12 +41,4 @@ export default {
 }
 </script>
 
-<style>
-.list_student_upper {
-  display: flex;
-  /* justify-content: flex-start; */
-}
-hr {
-  padding: auto;
-}
-</style>
+<style></style>

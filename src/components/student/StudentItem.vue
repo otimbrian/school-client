@@ -1,9 +1,7 @@
 <template>
-  <div class="single_student">
-    {{ re_student.first_name }}
-  </div>
+  <div class="single_student">{{ re_student.first_name }} {{ re_student.last_name }}</div>
   <div>
-    <input @click="viewStudent(re_student.id)" type="button" value="View Student" />
+    <input @click="viewStudent(re_student.id)" class="btn-lg" type="button" value="View Student" />
   </div>
 </template>
 

@@ -24,7 +24,7 @@
           autocomplete="on"
         />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" class="btn btn-outline-primary">Login</button>
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
@@ -62,7 +62,6 @@ export default {
         // console.log('Login response ----->', response)
         // console.log('Loging token ----->', response.data)
         this.$router.push('/')
-        
       } catch (error) {
         if (error.response) {
           // console.log('Error in logging in ----->', error.response.data)
@@ -199,9 +198,9 @@ export default {
   cursor: pointer;
 }
 
-.login form button:hover {
+/* .login form button:hover {
   background-color: #0056b3;
-}
+} */
 
 .error {
   color: red;
